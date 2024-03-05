@@ -6,6 +6,7 @@
 git clone git@github.com:murilopaixao/cadastroDePacientes.git
 cd cadastroDePacientes
 python -m venv venv
+source venv/bin/activate
 pip -r requirements.txt
 ```
 
