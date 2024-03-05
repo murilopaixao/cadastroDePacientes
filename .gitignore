@@ -1,0 +1,7 @@
+__pycache__/
+venv/
+.env
+testes/
+teste*
+db*
+pacientes.db

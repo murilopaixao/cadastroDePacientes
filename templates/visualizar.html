@@ -1,0 +1,110 @@
+{% extends "template.html" %}
+
+{% block nav %} 
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Recibo
+</button>
+  
+
+Paciente
+
+{% endblock %}
+{% block conteudo %}
+
+{% for p in paciente %}
+    
+  <form  method="POST" action="/deletar">
+    <input type="hidden" class="form-control" name=id value={{p[0]}} >
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" placeholder="Nome" readonly value={{p[1]}} >
+    </div>
+    
+    <div class="form-group">
+        <label for="fone">Celular</label>
+        <input type="text" class="form-control" id="fone" placeholder="Celular" readonly value={{p[3]}} >
+    </div>
+    
+    <div class="form-group">
+        <label for="email1">E-mail</label>
+        <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Seu email" readonly value={{p[2]}} >
+    </div>
+    
+    <div class="form-group">
+        <label for="cep">CEP</label>
+        <input type="text" class="form-control" id="cep" placeholder="CEP" readonly value={{p[4]}} >
+    </div>
+    
+    <div class="form-group">
+        <label for="endereco">Endereco</label>
+        <input type="text" class="form-control" id="endereco" placeholder="Endereco" readonly value={{p[5]}} >
+    </div>
+    <div class="form-group">
+        <label for="numero">Numero</label>
+        <input type="text" class="form-control" id="numero" placeholder="Numero" readonly value={{p[7]}} >
+    </div>
+    <div class="form-group">
+        <label for="bairro">Bairro</label>
+        <input type="text" class="form-control" id="bairro" placeholder="Bairro" readonly value={{p[6]}} >
+    </div>
+    <div class="form-group">
+        <label for="complemento">Complemento</label>
+        <input type="text" class="form-control" id="complemento" placeholder="Complemento" readonly value={{p[8]}} >
+    </div>
+    <div class="form-group">
+        <label for="dataNascimento">dataNascimento</label>
+        <input type="text" class="form-control" id="dataNascimento" placeholder="Data de Nascimento"  readonly value={{p[9]}}>
+    </div>
+    <div class="form-group">
+        <label for="genero">Gênero</label>
+        <input type="text" class="form-control" id="genero" placeholder="genero" readonly value={{p[10]}} >
+    </div>
+    <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" class="form-control" id="cpf" placeholder="cpf" readonly value={{p[11]}} >
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Deletar</button>
+</form>
+{% endfor %}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recibo - <i class="bi bi-filetype-pdf"></i></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="valorRecibo">Valor</label>
+                  <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="valorRecibo" placeholder="Valor">                  
+                </div>
+                <div class="form-group">
+                  <label for="dataRecibo">Data</label>
+                  <input type="text" class="form-control" id="dataRecibo" placeholder="Informe data">
+                </div>               
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Gerar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+{% block conteudoLateral %}
+
+
+{% endblock %}
+
