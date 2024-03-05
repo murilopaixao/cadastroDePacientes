@@ -4,4 +4,4 @@ venv/
 testes/
 teste*
 db*
-pacientes.db
+cadastro.db
