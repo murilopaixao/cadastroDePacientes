@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, jsonify, make_response
+from flask import render_template, request, redirect, send_file, url_for
 from app import app
 from datetime import date
 import banco
@@ -107,7 +107,8 @@ def gerarRecibo():
 
     banco.historicoFinanceiroAdd(idPaciente, dataRecibo, valorRecibo)
     recibo.gerarPdf(nomePaciente,dataRecibo,valorRecibo)
-    return redirect('/visualizar/'+str(idPaciente))
+    #return redirect('/visualizar/'+str(idPaciente))
+    return redirect('/download')
     
 @app.route('/historicoFinanceiroDel/<id>')
 def historicoFinanceiroDel(id):
@@ -115,3 +116,12 @@ def historicoFinanceiroDel(id):
 
     banco.historicoFinanceiroDel(id)
     return redirect('/visualizar/'+str(idPaciente[0][0]))
+
+@app.route('/download')
+def download():
+     return render_template('download.html')
+
+@app.route('/download2')
+def download2():
+    p = "./tmp/Recibo01.pdf"
+    return send_file(p,as_attachment=True)

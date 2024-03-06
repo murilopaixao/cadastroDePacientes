@@ -54,7 +54,7 @@ def historicoFinanceiroDel(id):
     conexao(sqlQuery,"altera")
 
 def historicoFinanceiroSelAll(id):
-    sqlQuery = f'SELECT * FROM historicoFinanceiro as hf LEFT JOIN pacientes as p on hf.idPaciente=p.id where p.id={id}'
+    sqlQuery = f'SELECT * FROM historicoFinanceiro as hf LEFT JOIN pacientes as p on hf.idPaciente=p.id where p.id={id} order by hf.id desc'
     historico = conexao(sqlQuery,"select")    
     return historico
 

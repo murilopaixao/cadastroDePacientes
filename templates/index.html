@@ -4,8 +4,7 @@
 
   <a href="/novo" class="btn btn-primary" role="button" ><i class="bi bi-person-plus"></i></a>
   <form class="d-flex">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
+    <input class="form-control me-2" id="search" placeholder="Pesquisar" aria-label="Search">
   </form>
 
 {% endblock %}
@@ -32,7 +31,7 @@
         <th scope="col">CPF</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="pacientesList">
       {% for p in pacientes %}
       <tr>
         <td>
@@ -60,10 +59,6 @@
     </tbody>
   </table>
   
-{% endblock %}
-
-{% block conteudoLateral %}
-
-    
+  <script src="{{ url_for('static', filename='index.js') }}"></script>
 {% endblock %}
 
