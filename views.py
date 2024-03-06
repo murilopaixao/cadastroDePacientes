@@ -1,15 +1,21 @@
 from flask import render_template, request, redirect, url_for, jsonify, make_response
 from app import app
 from datetime import date
-
-import json
 import banco
+import recibo
 
 @app.route('/')
 def index():
     pacientes = banco.todos()
     
     return render_template('index.html', pacientes=pacientes)
+
+@app.route('/teste')
+def teste():
+    teste = banco.testeLeft()
+    for x in teste:
+        print(x)
+    return render_template('teste.html')
 
 @app.route('/inicio')
 def inicio():
@@ -23,8 +29,9 @@ def novo():
 @app.route('/visualizar/<id>')
 def visualizar(id):
     paciente = banco.selectOne(id)
+    historico = banco.historicoFinanceiroSelAll(id)
 
-    return render_template('visualizar.html', paciente=paciente)
+    return render_template('visualizar.html', paciente=paciente, historico=historico)
 
 @app.route('/editar/<id>')
 def editar(id):
@@ -48,7 +55,15 @@ def alterar():
     dataNascimento = request.form['dataNascimento'].strip()
     genero = request.form['genero'].strip()
     cpf = request.form['cpf'].strip()
+
+    if (numero == ""):
+        numero = 'NULL'
+    if (nome == ""):
+        print("Nome não foi preenchido")
+        return redirect('/')
+    
     banco.alterar(id, nome, email, fone, cep, endereco, bairro, numero, complemento, dataNascimento, genero, cpf, cidade, estado)
+    
     return redirect('/')
 
 @app.route('/deletar', methods=['POST'])
@@ -83,7 +98,20 @@ def inserir():
 
     return redirect('/')
 
-@app.route('/teste')
-def teste():
-    banco.inserirTeste()
-    return redirect('/')
+@app.route('/gerarRecibo', methods=['POST'])
+def gerarRecibo():
+    idPaciente = request.form['idPaciente']
+    nomePaciente = request.form['nomePaciente']    
+    dataRecibo = request.form['dataRecibo'].strip()
+    valorRecibo = request.form['valorRecibo']
+
+    banco.historicoFinanceiroAdd(idPaciente, dataRecibo, valorRecibo)
+    recibo.gerarPdf(nomePaciente,dataRecibo,valorRecibo)
+    return redirect('/visualizar/'+str(idPaciente))
+    
+@app.route('/historicoFinanceiroDel/<id>')
+def historicoFinanceiroDel(id):
+    idPaciente = banco.historicoFinanceiroSelUnit(id)
+
+    banco.historicoFinanceiroDel(id)
+    return redirect('/visualizar/'+str(idPaciente[0][0]))

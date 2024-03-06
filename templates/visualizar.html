@@ -2,7 +2,7 @@
 
 {% block nav %} 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" onclick="abrirModal()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Recibo
 </button>
   
@@ -13,99 +13,152 @@ Paciente
 {% block conteudo %}
 
 {% for p in paciente %}
+
+{% if p[7] %}
+  {% set numero = p[7] %}
+{% else %}
+  {% set numero = "" %}
+{% endif %}
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cadastro</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Histórico Financeiro</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
     
-  <form  method="POST" action="/deletar">
-    <input type="hidden" class="form-control" name=id value={{p[0]}} >
-    <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" placeholder="Nome" readonly value={{p[1]}} >
-    </div>
-    
-    <div class="form-group">
-        <label for="fone">Celular</label>
-        <input type="text" class="form-control" id="fone" placeholder="Celular" readonly value={{p[3]}} >
-    </div>
-    
-    <div class="form-group">
-        <label for="email1">E-mail</label>
-        <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Seu email" readonly value={{p[2]}} >
-    </div>
-    
-    <div class="form-group">
-        <label for="cep">CEP</label>
-        <input type="text" class="form-control" id="cep" placeholder="CEP" readonly value={{p[4]}} >
-    </div>
-    
-    <div class="form-group">
-        <label for="endereco">Endereco</label>
-        <input type="text" class="form-control" id="endereco" placeholder="Endereco" readonly value={{p[5]}} >
-    </div>
-    <div class="form-group">
-        <label for="numero">Numero</label>
-        <input type="text" class="form-control" id="numero" placeholder="Numero" readonly value={{p[7]}} >
-    </div>
-    <div class="form-group">
-        <label for="bairro">Bairro</label>
-        <input type="text" class="form-control" id="bairro" placeholder="Bairro" readonly value={{p[6]}} >
-    </div>
-    <div class="form-group">
-      <label for="cidade">Cidade</label>
-      <input type="text" class="form-control" id="cidade" placeholder="Cidade" readonly value={{p[10]}} >
-    </div>
-    <div class="form-group">
-      <label for="estado">Estado</label>
-      <input type="text" class="form-control" id="estado" placeholder="Estado" readonly value={{p[11]}} >
-    </div>
-    <div class="form-group">
-        <label for="complemento">Complemento</label>
-        <input type="text" class="form-control" id="complemento" placeholder="Complemento" readonly value={{p[8]}} >
-    </div>
-    <div class="form-group">
-        <label for="dataNascimento">dataNascimento</label>
-        <input type="text" class="form-control" id="dataNascimento" placeholder="Data de Nascimento"  readonly value={{p[9]}}>
-    </div>
-    <div class="form-group">
-        <label for="genero">Gênero</label>
-        <input type="text" class="form-control" id="genero" placeholder="genero" readonly value={{p[10]}} >
-    </div>
-    <div class="form-group">
-        <label for="cpf">CPF</label>
-        <input type="text" class="form-control" id="cpf" placeholder="cpf" readonly value={{p[11]}} >
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Deletar</button>
-</form>
+    <br>
+    <form  method="POST" action="/deletar">
+      <input type="hidden" class="form-control" name="id" id="id" value={{p[0]}} >
+      <div class="mb-3 form-group">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" readonly value='{{p[1]}}' >
+      </div>
+      
+      <div class="mb-3 form-group">
+          <label for="fone">Celular</label>
+          <input type="text" class="form-control" id="fone" placeholder="Celular" readonly value='{{p[3]}}' >
+      </div>
+      
+      <div class="mb-3 form-group">
+          <label for="email1">E-mail</label>
+          <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Seu email" readonly value='{{p[2]}}' >
+      </div>
+      
+      <div class="mb-3 form-group">
+          <label for="cep">CEP</label>
+          <input type="text" class="form-control" id="cep" placeholder="CEP" readonly value='{{p[4]}}' >
+      </div>
+      
+      <div class="mb-3 form-group">
+          <label for="endereco">Endereco</label>
+          <input type="text" class="form-control" id="endereco" placeholder="Endereco" readonly value='{{p[5]}}' >
+      </div>
+      <div class="mb-3 form-group">
+          <label for="numero">Numero</label>
+          <input type="text" class="form-control" id="numero" placeholder="Numero" readonly value={{numero}} >
+      </div>
+      <div class="mb-3 form-group">
+          <label for="bairro">Bairro</label>
+          <input type="text" class="form-control" id="bairro" placeholder="Bairro" readonly value='{{p[6]}}' >
+      </div>
+      <div class="mb-3 form-group">
+        <label for="cidade">Cidade</label>
+        <input type="text" class="form-control" id="cidade" placeholder="Cidade" readonly value='{{p[10]}}' >
+      </div>
+      <div class="mb-3 form-group">
+        <label for="estado">Estado</label>
+        <input type="text" class="form-control" id="estado" placeholder="Estado" readonly value='{{p[11]}}' >
+      </div>
+      <div class="mb-3 form-group">
+          <label for="complemento">Complemento</label>
+          <input type="text" class="form-control" id="complemento" placeholder="Complemento" readonly value='{{p[8]}}' >
+      </div>
+      <div class="mb-3 form-group">
+          <label for="dataNascimento">dataNascimento</label>
+          <input type="text" class="form-control" id="dataNascimento" placeholder="Data de Nascimento"  readonly value='{{p[9]}}'>
+      </div>
+      <div class="mb-3 form-group">
+          <label for="genero">Gênero</label>
+          <input type="text" class="form-control" id="genero" placeholder="genero" readonly value='{{p[10]}}' >
+      </div>
+      <div class="mb-3 form-group">
+          <label for="cpf">CPF</label>
+          <input type="text" class="form-control" id="cpf" placeholder="cpf" readonly value='{{p[11]}}' >
+      </div>
+      
+      <button type="submit" class="btn btn-danger">Deletar</button>
+  </form>
+  
+
+
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Ação</th>
+          <th scope="col">id</th>
+          <th scope="col">idPaciente</th>
+          <th scope="col">Data</th>
+          <th scope="col">Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for h in historico %}
+        <tr>
+          <td>
+            <a href="/historicoFinanceiroDel/{{ h[0] }}" class="btn btn-danger" role="button" ><i class="bi bi-trash"></i></a>
+          </td>
+          <td>{{ h[0] }}</td>
+          <td>{{ h[1] }}</td>
+          <td>{{ h[2] }}</td>
+          <td>{{ h[3] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
 {% endfor %}
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  <div class="modal"  id="modal1" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Recibo - <i class="bi bi-filetype-pdf"></i></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <h5 class="modal-title">Recibo - <i class="bi bi-filetype-pdf"></i></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form>
-                <div class="form-group">
-                  <label for="valorRecibo">Valor</label>
-                  <input type="number" class="form-control" id="valorRecibo" aria-describedby="valorRecibo" placeholder="Valor">                  
-                </div>
-                <div class="form-group">
-                  <label for="dataRecibo">Data</label>
-                  <input type="text" class="form-control" id="dataRecibo" placeholder="Informe data">
-                </div>               
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Gerar</button>
-        </div>
+          <form  method="POST" action="/gerarRecibo">
+            <input type="hidden" class="form-control" name="idPaciente" id="idPaciente" >
+            <input type="hidden" class="form-control" name="nomePaciente" id="nomePaciente" >
+            <div class="mb-3 form-group">
+              <label for="valorRecibo">Valor</label>
+              <input type="number" class="form-control" id="valorRecibo" name="valorRecibo" aria-describedby="valorRecibo" placeholder="Valor">                  
+            </div>
+            <div class="mb-3 form-group">
+              <label for="dataRecibo">Data</label>
+              <input type="text" class="form-control" id="dataRecibo" name="dataRecibo" placeholder="Informe data">
+            </div>               
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary" value="Submit">Gerar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+  
+
+
+
+
 
 
   <script src="{{ url_for('static', filename='visualizar.js') }}"></script>

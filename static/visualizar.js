@@ -1,4 +1,11 @@
 const campoData = document.querySelector('#dataRecibo');
+let id = document.querySelector('#id');
+let idPaciente = document.querySelector('#idPaciente');
+let nome  = document.querySelector('#nome');
+let nomePaciente = document.querySelector('#nomePaciente');
+
+idPaciente.value = id.value;
+nomePaciente.value = nome.value;
 
 campoData.addEventListener("focusin", () => {
     if (campoData.value == '') {
@@ -10,3 +17,7 @@ campoData.addEventListener("focusin", () => {
         
     }
 });
+
+function abrirModal(){
+    new bootstrap.Modal("#modal1").show();
+}
