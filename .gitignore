@@ -3,5 +3,6 @@ venv/
 .env
 testes/
 teste*
+tmp/
 db*
 cadastro.db

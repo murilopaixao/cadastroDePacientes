@@ -41,12 +41,14 @@ def alterar():
     cep = request.form['cep'].strip()
     endereco = request.form['endereco'].strip()
     bairro = request.form['bairro'].strip()
+    cidade = request.form['cidade'].strip()
+    estado = request.form['estado'].strip()
     numero = request.form['numero']
     complemento = request.form['complemento'].strip()
     dataNascimento = request.form['dataNascimento'].strip()
     genero = request.form['genero'].strip()
     cpf = request.form['cpf'].strip()
-    banco.alterar(id, nome, email, fone, cep, endereco, bairro, numero, complemento, dataNascimento, genero, cpf)
+    banco.alterar(id, nome, email, fone, cep, endereco, bairro, numero, complemento, dataNascimento, genero, cpf, cidade, estado)
     return redirect('/')
 
 @app.route('/deletar', methods=['POST'])
@@ -63,6 +65,8 @@ def inserir():
     cep = request.form['cep'].strip()
     endereco = request.form['endereco'].strip()
     bairro = request.form['bairro'].strip()
+    cidade = request.form['cidade'].strip()
+    estado = request.form['estado'].strip()
     numero = request.form['numero']
     complemento = request.form['complemento'].strip()
     dataNascimento = request.form['dataNascimento'].strip()
@@ -75,7 +79,7 @@ def inserir():
         print("Nome não foi preenchido")
         return redirect('/')
     
-    banco.inserir(nome, email, fone, cep, endereco, bairro, numero, complemento, dataNascimento, genero, cpf)
+    banco.inserir(nome, email, fone, cep, endereco, bairro, numero, complemento, dataNascimento, genero, cpf, cidade, estado)
 
     return redirect('/')
 

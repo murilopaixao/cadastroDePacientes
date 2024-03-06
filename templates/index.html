@@ -2,7 +2,7 @@
 
 {% block nav %} 
 
-<a class="navbar-brand" href="/novo"><i class="bi bi-person-plus"></i></a>
+<a href="/novo" class="btn btn-primary" role="button" ><i class="bi bi-person-plus"></i></a>
 <form class="form-inline my-2 my-lg-0">
   <input class="form-control mr-sm-2" type="search" placeholder="Search">
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -14,7 +14,6 @@
 <table class="table">
     <thead class="thead-light">
       <tr>
-        
         <th scope="col">Ação</th>
         <th scope="col">id</th>
         <th scope="col">Nome</th>
@@ -22,21 +21,22 @@
         <th scope="col">Email</th>
         <th scope="col">Endereco</th>
         <th scope="col">Numero</th>
-        <th scope="col">Bairro</th>
         <th scope="col">Complemento</th>
+        <th scope="col">Bairro</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">Estado</th>
         <th scope="col">CEP</th>
         <th scope="col">DatadeNasc.</th>
         <th scope="col">Gênero</th>
         <th scope="col">CPF</th>
-
       </tr>
     </thead>
     <tbody>
       {% for p in pacientes %}
       <tr>
         <td>
-          <a href="/editar/{{ p[0] }}"><i class="bi bi-pencil"></i></a>
-          <a href="/visualizar/{{ p[0] }}"><i class="bi bi-file-text"></i></a>          
+          <a href="/editar/{{ p[0] }}" class="btn btn-primary" role="button" ><i class="bi bi-pencil"></i></a>
+          <a href="/visualizar/{{ p[0] }}"class="btn btn-secondary" role="button"><i class="bi bi-file-text"></i></a>          
         </td>
         <td>{{ p[0] }}</td>
         <td>{{ p[1] }}</td>
@@ -44,8 +44,10 @@
         <td>{{ p[2] }}</td>
         <td>{{ p[5] }}</td>
         <td>{{ p[7] }}</td>
-        <td>{{ p[6] }}</td>
         <td>{{ p[8] }}</td>
+        <td>{{ p[6] }}</td>
+        <td>{{ p[12] }}</td>
+        <td>{{ p[13] }}</td>
         <td>{{ p[4] }}</td>
         <td>{{ p[9] }}</td>
         <td>{{ p[10] }}</td>

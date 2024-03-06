@@ -49,6 +49,14 @@ Paciente
         <input type="text" class="form-control" id="bairro" placeholder="Bairro" readonly value={{p[6]}} >
     </div>
     <div class="form-group">
+      <label for="cidade">Cidade</label>
+      <input type="text" class="form-control" id="cidade" placeholder="Cidade" readonly value={{p[10]}} >
+    </div>
+    <div class="form-group">
+      <label for="estado">Estado</label>
+      <input type="text" class="form-control" id="estado" placeholder="Estado" readonly value={{p[11]}} >
+    </div>
+    <div class="form-group">
         <label for="complemento">Complemento</label>
         <input type="text" class="form-control" id="complemento" placeholder="Complemento" readonly value={{p[8]}} >
     </div>
@@ -83,7 +91,7 @@ Paciente
             <form>
                 <div class="form-group">
                   <label for="valorRecibo">Valor</label>
-                  <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="valorRecibo" placeholder="Valor">                  
+                  <input type="number" class="form-control" id="valorRecibo" aria-describedby="valorRecibo" placeholder="Valor">                  
                 </div>
                 <div class="form-group">
                   <label for="dataRecibo">Data</label>
@@ -100,7 +108,7 @@ Paciente
   </div>
 
 
-
+  <script src="{{ url_for('static', filename='visualizar.js') }}"></script>
 {% endblock %}
 
 {% block conteudoLateral %}
